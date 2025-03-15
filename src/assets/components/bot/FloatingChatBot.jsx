@@ -11,18 +11,19 @@ const FloatingChatbot = () => {
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    const [redirectPath, setRedirectPath] = useState('');
     const navigate = useNavigate();
 
     // Handle redirection
     useEffect(() => {
         if (shouldRedirect) {
             const timer = setTimeout(() => {
-                navigate('/mugs');
+                navigate(redirectPath);
                 setIsOpen(false); // Close the chatbot after redirecting
             }, 1500); // Redirect after 1.5 seconds
             return () => clearTimeout(timer);
         }
-    }, [shouldRedirect, navigate]);
+    }, [shouldRedirect, navigate, redirectPath]);
 
     // Simple Vietnamese responses to common questions
     const getResponse = (question) => {
@@ -30,7 +31,12 @@ const FloatingChatbot = () => {
 
         if (lowerQuestion.includes('cốc')) {
             setShouldRedirect(true);
+            setRedirectPath('/mugs');
             return 'Tôi đang chuyển bạn đến trang cốc của chúng tôi...';
+        } else if (lowerQuestion.includes('thanh toán')) {
+            setShouldRedirect(true);
+            setRedirectPath('/cart');
+            return 'Tôi đang chuyển bạn đến trang thanh toán...';
         } else if (lowerQuestion.includes('xin chào') || lowerQuestion.includes('chào')) {
             return 'Xin chào! Rất vui được gặp bạn.';
         } else if (lowerQuestion.includes('tên') && lowerQuestion.includes('bạn')) {
