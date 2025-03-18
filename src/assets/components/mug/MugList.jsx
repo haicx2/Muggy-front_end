@@ -1,12 +1,12 @@
 import MugCard from "./MugCard.jsx";
-import mug1 from "../../images/mug1.webp"
-import mug2 from "../../images/mug2.webp"
-import mug3 from "../../images/mug3.jpg"
+import mug1 from "../../images/mug1.png"
+import mug2 from "../../images/mug2.png"
+import mug3 from "../../images/mug3.png"
 
 export const mugs = [
     {
         id: 1,
-        name: 'Classic White Ceramic Mug',
+        name: 'Hello Kitty/Melody Ceramic Mug',
         price: 24.99,
         originalPrice: 29.99,
         description: 'Elegant and durable ceramic mug with a classic design. Perfect for your morning coffee or tea.',
@@ -26,7 +26,7 @@ export const mugs = [
     },
     {
         id: 2,
-        name: 'Blue Ocean Collection Mug',
+        name: 'Alien x Croc Mug',
         price: 29.99,
         description: 'Inspired by ocean waves, this beautiful mug brings serenity to your daily routine.',
         features: [
@@ -46,7 +46,7 @@ export const mugs = [
     // Add similar pattern for the rest of the mugs
     {
         id: 3,
-        name: 'Pink Blossom Series',
+        name: 'Halloween Mug',
         price: 27.99,
         originalPrice: 34.99,
         description: 'Delicate cherry blossom design brings a touch of springtime to your beverage experience.',
