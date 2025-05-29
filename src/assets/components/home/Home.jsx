@@ -3,7 +3,9 @@ import { ChevronRight, Phone, Mail, MapPin, ShoppingCart, Flower2, Heart, Send }
 import collection1 from '../../images/collection1.jpg'
 import collection2 from '../../images/collection2.jpg'
 import collection3 from '../../images/collection3.jpg'
+import home_mug from '../../images/Home_Mug.jpg'
 import './HomeStyles.css'
+
 
 export default function Home() {
     const [messageSent, setMessageSent] = useState(false);
@@ -39,7 +41,7 @@ export default function Home() {
                                 Unique Mugs for <span className="text-pink-500">Unique People</span>
                             </h1>
                             <p className="text-xl text-gray-600 mb-8">
-                                Discover our collection of handcrafted mugs that bring joy to every sip ✨
+                                Hãy khám phá những sản phẩm cốc sứ độc đáo của Muggy ✨
                             </p>
                             <button className="bg-pink-500 text-white px-8 py-3 rounded-full flex items-center hover:bg-pink-600 transition-all hover:transform hover:scale-105 hover:shadow-lg">
                                 Shop Now <ChevronRight className="ml-2" />
@@ -47,7 +49,7 @@ export default function Home() {
                         </div>
                         <div className="md:w-1/2">
                             <img
-                                src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-4.0.3"
+                                src={home_mug}
                                 alt="Beautiful Ceramic Mug"
                                 className="rounded-lg shadow-xl floating-image"
                             />

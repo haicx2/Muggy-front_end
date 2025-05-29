@@ -7,20 +7,28 @@ import Mug from './assets/components/mug/Mug.jsx';
 import CartPage from './assets/components/cart/CartPage.jsx';
 import MugDetails from "./assets/components/mug/MugDetails.jsx";
 import FloatingChatBot from "./assets/components/bot/FloatingChatBot.jsx";
+import CuteBackground from "./assets/components/layout/CuteBackground.jsx";
 
 function App() {
     return (
         <CartProvider>
             <BrowserRouter>
-                <NavBar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/mugs" element={<Mug />} />
-                    <Route path="/cart" element={<CartPage />} />
-                    <Route path="/mug/:id" element={<MugDetails />} />
-                </Routes>
-                <Footer />
-                <FloatingChatBot/>
+                <div className="relative min-h-screen">
+                    <CuteBackground />
+                    <div className="relative z-10">
+                        <NavBar />
+                        <main className="content-wrapper">
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route path="/mugs" element={<Mug />} />
+                                <Route path="/cart" element={<CartPage />} />
+                                <Route path="/mug/:id" element={<MugDetails />} />
+                            </Routes>
+                        </main>
+                        <Footer />
+                    </div>
+                    <FloatingChatBot />
+                </div>
             </BrowserRouter>
         </CartProvider>
     );
