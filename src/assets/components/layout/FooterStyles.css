@@ -1,0 +1,56 @@
+
+.footer-gradient {
+    background: linear-gradient(to right, #1e3a8a, #1e40af, #1e3a8a);
+}
+
+@keyframes floatingFlower {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+}
+
+.footer-flower {
+    color: rgba(244, 114, 182, 0.2); /* pink-400 with opacity */
+    position: absolute;
+}
+
+.footer-flower-1 {
+    animation: floatingFlower 4s infinite ease-in-out;
+    top: 20px;
+    left: 5%;
+}
+
+.footer-flower-2 {
+    animation: floatingFlower 4s infinite ease-in-out 1s;
+    bottom: 20px;
+    right: 5%;
+}
+
+.footer-flower-3 {
+    animation: floatingFlower 4s infinite ease-in-out 2s;
+    top: 40px;
+    right: 15%;
+}
+
+.footer-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #f472b6; /* pink-400 */
+    transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}

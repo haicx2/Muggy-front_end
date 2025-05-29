@@ -1,0 +1,70 @@
+@keyframes floatingFlower {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(10px, -10px) rotate(45deg);
+    }
+    50% {
+        transform: translate(0, -15px) rotate(90deg);
+    }
+    75% {
+        transform: translate(-10px, -10px) rotate(45deg);
+    }
+}
+
+.search-flower {
+    position: absolute;
+    color: #ec4899;
+    opacity: 0.6;
+    animation: floatingFlower 6s infinite ease-in-out;
+}
+
+.flower-1 {
+    right: 20px;
+    top: -15px;
+    animation-delay: 0s;
+}
+
+.flower-2 {
+    left: 20px;
+    bottom: -15px;
+    animation-delay: 2s;
+}
+
+.flower-3 {
+    right: 45%;
+    top: -10px;
+    animation-delay: 1s;
+    opacity: 0.4;
+}
+
+.search-container {
+    background: linear-gradient(to right, #fdf2f8, #fce7f3, #fdf2f8);
+}
+
+.search-input {
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
+}
+
+@keyframes glowEffect {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(236, 72, 153, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+    }
+}
+
+.filter-button {
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+    animation: glowEffect 2s infinite;
+}

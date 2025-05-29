@@ -1,0 +1,43 @@
+@keyframes flowerSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+.flower-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    color: #ec4899;
+    animation: flowerSpin 3s infinite linear;
+}
+
+.navbar-gradient {
+    background: linear-gradient(to right, #fdf2f8, #fce7f3, #fbcfe8);
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #ec4899;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
