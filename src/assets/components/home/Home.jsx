@@ -41,7 +41,7 @@ export default function Home() {
                                 Unique Mugs for <span className="text-pink-500">Unique People</span>
                             </h1>
                             <p className="text-xl text-gray-600 mb-8">
-                                Hãy khám phá những sản phẩm cốc sứ độc đáo của Muggy ✨
+                                Hãy khám phá những sản phẩm cốc sứ độc đáo của Muggie ✨
                             </p>
                             <button className="bg-pink-500 text-white px-8 py-3 rounded-full flex items-center hover:bg-pink-600 transition-all hover:transform hover:scale-105 hover:shadow-lg">
                                 Shop Now <ChevronRight className="ml-2" />

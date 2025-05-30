@@ -18,9 +18,9 @@ export default function Navbar() {
                     <Flower2 className="flower-icon right-2" />
 
                     <a href="" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src={logo} className="h-10 rounded-full shadow-md" alt="Muggy Logo"/>
+                        <img src={logo} className="h-10 rounded-full shadow-md" alt="Muggie Logo"/>
                         <span className="self-center text-2xl font-semibold whitespace-nowrap text-pink-600 hover:text-pink-700 transition-colors">
-                            Muggy
+                            Muggie
                         </span>
                     </a>
 
@@ -28,7 +28,7 @@ export default function Navbar() {
                     <nav className="hidden md:flex space-x-8">
                         <a href="/" className="nav-link text-pink-700 hover:text-pink-500">Home</a>
                         <a href="/mugs" className="nav-link text-pink-700 hover:text-pink-500">Collection</a>
-                        <a href="#bestsellers" className="nav-link text-pink-700 hover:text-pink-500">Best Sellers</a>
+                        <a href="/mugs/bestsellers" className="nav-link text-pink-700 hover:text-pink-500">Best Sellers</a>
                         <a href="#contact" className="nav-link text-pink-700 hover:text-pink-500">Contact</a>
                         <a href="/cart" className="text-pink-700 hover:text-pink-500 relative transition-transform hover:scale-110">
                             <ShoppingCart className="w-6 h-6" />

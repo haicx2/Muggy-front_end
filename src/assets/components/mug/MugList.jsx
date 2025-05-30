@@ -9,6 +9,7 @@ export const mugs = [
         name: 'Hello Kitty/Melody Ceramic Mug',
         price: 24.99,
         originalPrice: 29.99,
+        sellNumbers: 1500,
         description: 'Elegant and durable ceramic mug with a classic design. Perfect for your morning coffee or tea.',
         features: [
             'Dishwasher safe',
@@ -28,6 +29,7 @@ export const mugs = [
         id: 2,
         name: 'Alien x Croc Mug',
         price: 29.99,
+        sellNumbers: 2000,
         description: 'Inspired by ocean waves, this beautiful mug brings serenity to your daily routine.',
         features: [
             'Handcrafted design',
@@ -43,12 +45,12 @@ export const mugs = [
             mug2
         ]
     },
-    // Add similar pattern for the rest of the mugs
     {
         id: 3,
         name: 'Halloween Mug',
         price: 27.99,
         originalPrice: 34.99,
+        sellNumbers: 1200,
         description: 'Delicate cherry blossom design brings a touch of springtime to your beverage experience.',
         features: [
             'Premium porcelain',
@@ -76,7 +78,8 @@ export default function MugList() {
                     name={mug.name}
                     price={mug.price}
                     originalPrice={mug.originalPrice}
-                    image={mug.images[0]} // Use first image as the main image
+                    image={mug.images[0]}
+                    sellNumbers={mug.sellNumbers}
                 />
             ))}
         </div>

@@ -8,6 +8,7 @@ import CartPage from './assets/components/cart/CartPage.jsx';
 import MugDetails from "./assets/components/mug/MugDetails.jsx";
 import FloatingChatBot from "./assets/components/bot/FloatingChatBot.jsx";
 import CuteBackground from "./assets/components/layout/CuteBackground.jsx";
+import BestSellers from "./assets/components/mug/BestSellers.jsx";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                                 <Route path="/mugs" element={<Mug />} />
                                 <Route path="/cart" element={<CartPage />} />
                                 <Route path="/mug/:id" element={<MugDetails />} />
+                                <Route path="/mugs/bestsellers" element={<BestSellers />} />
                             </Routes>
                         </main>
                         <Footer />
