@@ -1,12 +1,22 @@
+// Mug.jsx
 import React, { useState } from 'react';
 import MugSearch from "./MugSearch.jsx";
 import MugList from "./MugList.jsx";
 
 export default function Mug() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [filters, setFilters] = useState({
+        priceRange: 'all',
+        category: 'all',
+        sortBy: 'featured'
+    });
 
     const handleSearch = (term) => {
         setSearchTerm(term);
+    };
+
+    const handleFilter = (newFilters) => {
+        setFilters(newFilters);
     };
 
     return (
@@ -16,8 +26,8 @@ export default function Mug() {
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Our Collection</h1>
                     <p className="text-gray-600">Discover our handpicked selection of beautiful mugs</p>
                 </div>
-                <MugSearch onSearch={handleSearch} />
-                <MugList searchTerm={searchTerm} />
+                <MugSearch onSearch={handleSearch} onFilter={handleFilter} />
+                <MugList searchTerm={searchTerm} filters={filters} />
             </div>
         </div>
     );
