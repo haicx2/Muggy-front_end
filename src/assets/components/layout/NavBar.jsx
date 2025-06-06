@@ -1,4 +1,3 @@
-// NavBar.jsx
 import React, {useEffect, useRef, useState} from 'react';
 import {Flower2, Heart, LogOut, Menu, Settings, ShoppingBag, ShoppingCart, User, X} from 'lucide-react';
 import {Link} from 'react-router-dom';
@@ -36,14 +35,14 @@ export default function Navbar() {
         <header className="fixed w-full navbar-gradient shadow-lg z-50">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20 relative">
-                    {/* Decorative flowers */}
-                    <Flower2 className="flower-icon left-2"/>
-                    <Flower2 className="flower-icon right-2"/>
+                    {/* Decorative flowers - moved further to the sides */}
+                    <Flower2 className="flower-icon left-flower"/>
+                    <Flower2 className="flower-icon right-flower"/>
 
                     <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src={logo} className="h-10 rounded-full shadow-md" alt="Muggie Logo"/>
+                        <img src={logo} className="h-14 w-14 rounded-full shadow-md" alt="Muggie Logo"/>
                         <span
-                            className="self-center text-2xl font-semibold whitespace-nowrap text-pink-600 hover:text-pink-700 transition-colors">
+                            className="self-center text-3xl font-semibold whitespace-nowrap text-pink-600 hover:text-pink-700 transition-colors">
                             Muggie
                         </span>
                     </Link>

@@ -17,6 +17,14 @@ const FloatingChatbot = () => {
 
     // Handle redirection
     useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsOpen(true);
+        }, 1500); // Delay of 1.5 seconds before opening
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
         if (shouldRedirect) {
             const timer = setTimeout(() => {
                 navigate(redirectPath);

@@ -6,7 +6,7 @@ import useCart from "./CartContext.jsx";
 import Notification from "../utils/Notification.jsx";
 import qr from "../../images/qrcode.png"
 
-const bankQrCode = {qr}; // Replace with your QR code URL
+const bankQrCode = qr; // Replace with your QR code URL
 
 // Random order ID generator
 const generateOrderId = () => {

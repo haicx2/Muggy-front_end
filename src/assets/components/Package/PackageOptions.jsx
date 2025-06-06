@@ -8,14 +8,14 @@ const packageOptions = [
         name: 'Túi cơ bản',
         description: 'Túi đựng thông thường cho sản phẩm của bạn',
         price: 0,
-        image: {p1} // Sample basic packaging image
+        image: p1 // Sample basic packaging image
     },
     {
         id: 'premium',
         name: 'Túi cao cấp',
         description: 'Túi cao cấp kèm giấy gói quà sang trọng',
         price: 20000,
-        image: {p2} // Sample premium packaging image
+        image: p2 // Sample premium packaging image
     }
 ];
 
