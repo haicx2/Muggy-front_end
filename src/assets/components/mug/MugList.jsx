@@ -8,17 +8,17 @@ import mug3 from "../../images/mug3.png";
 export const mugs = [
     {
         id: 1,
-        name: 'Hello Kitty/Melody Ceramic Mug',
-        price: 24.99,
-        originalPrice: 29.99,
+        name: 'Cốc gốm Hello Kitty/Melody',
+        price: 579000,
+        originalPrice: 699000,
         sellNumbers: 1500,
         category: 'ceramic',
-        description: 'Elegant and durable ceramic mug with a classic design. Perfect for your morning coffee or tea.',
+        description: 'Cốc gốm sang trọng và bền đẹp với thiết kế cổ điển. Hoàn hảo cho cà phê hoặc trà buổi sáng của bạn.',
         features: [
-            'Dishwasher safe',
-            'Microwave safe',
-            'Holds 12oz of liquid',
-            'Made from high-quality ceramic'
+            'An toàn với máy rửa chén',
+            'An toàn với lò vi sóng',
+            'Dung tích 350ml',
+            'Làm từ gốm cao cấp'
         ],
         images: [
             mug1,
@@ -30,16 +30,16 @@ export const mugs = [
     },
     {
         id: 2,
-        name: 'Alien x Croc Mug',
-        price: 29.99,
+        name: 'Cốc Alien x Croc',
+        price: 699000,
         sellNumbers: 2000,
         category: 'porcelain',
-        description: 'Inspired by ocean waves, this beautiful mug brings serenity to your daily routine.',
+        description: 'Lấy cảm hứng từ sóng biển, chiếc cốc xinh đẹp này mang lại sự thanh thản cho thói quen hàng ngày của bạn.',
         features: [
-            'Handcrafted design',
-            'Dishwasher and microwave safe',
-            'Holds 14oz of liquid',
-            'Limited edition collection'
+            'Thiết kế thủ công',
+            'An toàn với máy rửa chén và lò vi sóng',
+            'Dung tích 400ml',
+            'Bộ sưu tập giới hạn'
         ],
         images: [
             mug2,
@@ -51,17 +51,17 @@ export const mugs = [
     },
     {
         id: 3,
-        name: 'Halloween Mug',
-        price: 27.99,
-        originalPrice: 34.99,
+        name: 'Cốc Halloween',
+        price: 649000,
+        originalPrice: 799000,
         sellNumbers: 1200,
         category: 'glass',
-        description: 'Delicate cherry blossom design brings a touch of springtime to your beverage experience.',
+        description: 'Thiết kế hoa anh đào tinh tế mang lại cảm giác mùa xuân cho trải nghiệm đồ uống của bạn.',
         features: [
-            'Premium porcelain',
-            'Dishwasher safe',
-            'Holds 10oz of liquid',
-            'Gift box included'
+            'Sứ cao cấp',
+            'An toàn với máy rửa chén',
+            'Dung tích 300ml',
+            'Kèm hộp quà tặng'
         ],
         images: [
             mug3,
@@ -90,9 +90,9 @@ export default function MugList({ searchTerm = '', filters = {} }) {
         // Apply price range filter
         if (filters.priceRange && filters.priceRange !== 'all') {
             result = result.filter(mug => {
-                if (filters.priceRange === 'under20') return mug.price < 20;
-                if (filters.priceRange === '20-50') return mug.price >= 20 && mug.price <= 50;
-                if (filters.priceRange === 'over50') return mug.price > 50;
+                if (filters.priceRange === 'under500k') return mug.price < 500000;
+                if (filters.priceRange === '500k-1m') return mug.price >= 500000 && mug.price <= 1000000;
+                if (filters.priceRange === 'over1m') return mug.price > 1000000;
                 return true;
             });
         }
@@ -136,8 +136,8 @@ export default function MugList({ searchTerm = '', filters = {} }) {
                     <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-pink-100">
                         <Search className="w-8 h-8 text-pink-400" />
                     </div>
-                    <h3 className="text-xl font-medium text-gray-900 mb-1">No mugs found</h3>
-                    <p className="text-gray-500">Try adjusting your search or filters</p>
+                    <h3 className="text-xl font-medium text-gray-900 mb-1">Không tìm thấy sản phẩm</h3>
+                    <p className="text-gray-500">Hãy thử điều chỉnh tìm kiếm hoặc bộ lọc</p>
                 </div>
             )}
         </>

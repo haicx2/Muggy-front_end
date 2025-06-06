@@ -1,6 +1,6 @@
 import React from 'react';
 import MugCard from './MugCard';
-import { mugs } from './MugList';
+import { mugs } from './MugList.jsx';
 import { Crown, Stars, Sparkles } from 'lucide-react';
 
 export default function BestSellers() {

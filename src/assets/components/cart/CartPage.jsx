@@ -1,16 +1,28 @@
-// CartPage.jsx
 import useCart from "./CartContext.jsx";
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Notification from "../utils/Notification.jsx";
+import PackageOptions from "../Package/PackageOptions.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function CartPage() {
-    const { items, updateQuantity, removeFromCart, total } = useCart();
+    const {
+        items,
+        updateQuantity,
+        removeFromCart,
+        subtotal,
+        selectedPackage,
+        selectPackage,
+        packageCost
+    } = useCart();
+
     const [notification, setNotification] = useState({
         visible: false,
         message: '',
         type: 'success'
     });
+
+    const navigate = useNavigate();
 
     // Add this for debugging
     useEffect(() => {
@@ -29,19 +41,28 @@ export default function CartPage() {
         try {
             updateQuantity(id, newQuantity);
             if (newQuantity > 0) {
-                showNotification("Quantity updated successfully", "success");
+                showNotification("Số lượng đã được cập nhật", "success");
             }
         } catch (error) {
-            showNotification("Failed to update quantity", "error");
+            showNotification("Không thể cập nhật số lượng", "error");
         }
     };
 
     const handleRemoveItem = (id) => {
         try {
             removeFromCart(id);
-            showNotification("Item removed from cart", "success");
+            showNotification("Đã xóa sản phẩm khỏi giỏ hàng", "success");
         } catch (error) {
-            showNotification("Failed to remove item", "error");
+            showNotification("Không thể xóa sản phẩm", "error");
+        }
+    };
+
+    const handlePackageSelect = (packageOption) => {
+        try {
+            selectPackage(packageOption);
+            showNotification(`Đã chọn ${packageOption.name}`, "success");
+        } catch (error) {
+            showNotification("Không thể chọn túi", "error");
         }
     };
 
@@ -50,10 +71,10 @@ export default function CartPage() {
             <div className="min-h-screen bg-gray-50 pt-24 pb-12">
                 <div className="container mx-auto px-4">
                     <div className="bg-white rounded-lg shadow-sm p-8 text-center">
-                        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Your cart is empty</h2>
-                        <p className="text-gray-600 mb-4">Add some beautiful mugs to your cart!</p>
+                        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Giỏ hàng của bạn đang trống</h2>
+                        <p className="text-gray-600 mb-4">Hãy thêm sản phẩm vào giỏ hàng!</p>
                         <a href="/" className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-                            Continue Shopping
+                            Tiếp tục mua sắm
                         </a>
                     </div>
                 </div>
@@ -61,10 +82,13 @@ export default function CartPage() {
         );
     }
 
+    // Calculate total with package cost
+    const total = subtotal + packageCost;
+
     return (
         <div className="min-h-screen bg-gray-50 pt-24 pb-12">
             <div className="container mx-auto px-4">
-                <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+                <h1 className="text-3xl font-bold text-gray-900 mb-8">Giỏ hàng</h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2">
@@ -78,7 +102,9 @@ export default function CartPage() {
                                     />
                                     <div className="flex-1">
                                         <h3 className="text-lg font-medium text-gray-900">{item.name}</h3>
-                                        <p className="text-pink-500 font-semibold">${item.price.toFixed(2)}</p>
+                                        <p className="text-pink-500 font-semibold">
+                                            {item.price.toLocaleString()} VND
+                                        </p>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <button
@@ -108,29 +134,44 @@ export default function CartPage() {
 
                     <div className="lg:col-span-1">
                         <div className="bg-white rounded-lg shadow-sm p-6">
-                            <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+                            <h2 className="text-xl font-semibold mb-4">Tổng đơn hàng</h2>
+
+                            {/* Package selection component */}
+                            <PackageOptions
+                                selectedPackage={selectedPackage}
+                                onPackageSelect={handlePackageSelect}
+                            />
+
                             <div className="space-y-4">
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Subtotal</span>
-                                    <span className="font-semibold">${total.toFixed(2)}</span>
+                                    <span className="text-gray-600">Tổng tiền sản phẩm</span>
+                                    <span className="font-semibold">{subtotal.toLocaleString()} VND</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-gray-600">Shipping</span>
-                                    <span className="font-semibold">Free</span>
+                                    <span className="text-gray-600">Túi đựng</span>
+                                    {packageCost === 0 ? (
+                                        <span className="font-semibold text-green-600">Miễn phí</span>
+                                    ) : (
+                                        <span className="font-semibold">{packageCost.toLocaleString()} VND</span>
+                                    )}
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-gray-600">Phí vận chuyển</span>
+                                    <span className="font-semibold text-green-600">Miễn phí</span>
                                 </div>
                                 <div className="border-t pt-4">
                                     <div className="flex justify-between">
-                                        <span className="text-lg font-semibold">Total</span>
+                                        <span className="text-lg font-semibold">Tổng thanh toán</span>
                                         <span className="text-lg font-bold text-blue-600">
-                                            ${total.toFixed(2)}
+                                            {total.toLocaleString()} VND
                                         </span>
                                     </div>
                                 </div>
                                 <button
-                                    onClick={() => showNotification("Proceeding to checkout...", "success")}
+                                    onClick={() => navigate('/checkout')}
                                     className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
                                 >
-                                    Proceed to Checkout
+                                    Thanh toán
                                 </button>
                             </div>
                         </div>

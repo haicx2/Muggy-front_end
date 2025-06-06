@@ -17,17 +17,17 @@ export default function MugDetails() {
         const selectedMug = mugs.find(m => m.id === parseInt(id));
 
         if (!selectedMug) {
-            console.error("Mug not found with ID:", id);
+            console.error("Không tìm thấy cốc với ID:", id);
             navigate('/'); // Redirect to home if mug not found
             return;
         }
 
         setMug(selectedMug);
-        console.log("Selected mug:", selectedMug); // Add this for debugging
+        console.log("Cốc đã chọn:", selectedMug); // Add this for debugging
     }, [id, navigate]);
 
     if (!mug) {
-        return <div className="container mx-auto px-4 py-8">Loading...</div>;
+        return <div className="container mx-auto px-4 py-8">Đang tải...</div>;
     }
 
     const handleQuantityChange = (delta) => {
@@ -68,7 +68,7 @@ export default function MugDetails() {
                                     selectedImage === index ? 'border-pink-500' : 'border-transparent'
                                 }`}
                             >
-                                <img src={image} alt={`${mug.name} view ${index + 1}`} className="w-full h-full object-cover" />
+                                <img src={image} alt={`${mug.name} góc nhìn ${index + 1}`} className="w-full h-full object-cover" />
                             </button>
                         ))}
                     </div>
@@ -79,9 +79,9 @@ export default function MugDetails() {
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">{mug.name}</h1>
                         <div className="flex items-center gap-4">
-                            <span className="text-2xl font-bold text-pink-500">${mug.price.toFixed(2)}</span>
+                            <span className="text-2xl font-bold text-pink-500">{mug.price.toLocaleString()} VND</span>
                             {mug.originalPrice && (
-                                <span className="text-lg text-gray-500 line-through">${mug.originalPrice.toFixed(2)}</span>
+                                <span className="text-lg text-gray-500 line-through">{mug.originalPrice.toLocaleString()} VND</span>
                             )}
                         </div>
                     </div>
@@ -120,7 +120,7 @@ export default function MugDetails() {
                             className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2"
                         >
                             <ShoppingCart className="w-5 h-5" />
-                            Add to Cart
+                            Thêm vào giỏ hàng
                         </button>
                         <button className="p-3 border rounded-lg hover:bg-gray-100">
                             <Heart className="w-5 h-5" />
@@ -134,15 +134,15 @@ export default function MugDetails() {
                     <div className="grid grid-cols-3 gap-4 pt-6 border-t">
                         <div className="flex flex-col items-center text-center gap-2">
                             <Truck className="w-6 h-6 text-blue-600" />
-                            <span className="text-sm text-gray-600">Free Shipping</span>
+                            <span className="text-sm text-gray-600">Miễn phí vận chuyển</span>
                         </div>
                         <div className="flex flex-col items-center text-center gap-2">
                             <Shield className="w-6 h-6 text-blue-600" />
-                            <span className="text-sm text-gray-600">2 Year Warranty</span>
+                            <span className="text-sm text-gray-600">Bảo hành 2 năm</span>
                         </div>
                         <div className="flex flex-col items-center text-center gap-2">
                             <RefreshCw className="w-6 h-6 text-blue-600" />
-                            <span className="text-sm text-gray-600">30-Day Returns</span>
+                            <span className="text-sm text-gray-600">Đổi trả trong 30 ngày</span>
                         </div>
                     </div>
                 </div>

@@ -95,16 +95,16 @@ export default function MugSearch({ onSearch, onFilter }) {
                 <div className="mt-4 p-4 bg-white/90 backdrop-blur-sm rounded-xl border-2 border-pink-100 animate-fadeIn">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="space-y-2">
-                            <label className="text-sm font-medium text-gray-700">Price Range</label>
+                            <label className="text-sm font-medium text-gray-700">Mức giá</label>
                             <select
                                 value={filters.priceRange}
                                 onChange={(e) => handleFilterChange('priceRange', e.target.value)}
                                 className="w-full p-2 border border-pink-200 rounded-lg focus:border-pink-400 focus:ring-2 focus:ring-pink-200"
                             >
-                                <option value="all">All Prices</option>
-                                <option value="under20">Under $20</option>
-                                <option value="20-50">$20 - $50</option>
-                                <option value="over50">Over $50</option>
+                                <option value="all">Tất cả</option>
+                                <option value="under20">dưới 200k</option>
+                                <option value="20-50">200k - 500k</option>
+                                <option value="over50">trên 500k</option>
                             </select>
                         </div>
                         <div className="space-y-2">

@@ -13,6 +13,8 @@ import CuteBackground from "./assets/components/layout/CuteBackground.jsx";
 import BestSellers from "./assets/components/mug/BestSellers.jsx";
 import Login from "./assets/components/user/Login.jsx";
 import Register from "./assets/components/user/Register.jsx";
+import CheckoutPage from "./assets/components/cart/CheckoutPage.jsx";
+import SuccessCheckout from "./assets/components/cart/SuccessCheckout.jsx";
 
 function App() {
     return (
@@ -32,6 +34,8 @@ function App() {
                                     <Route path="/mugs/bestsellers" element={<BestSellers />} />
                                     <Route path="/login" element={<Login />} />
                                     <Route path="/register" element={<Register />} />
+                                    <Route path="/checkout" element={<CheckoutPage />} />
+                                    <Route path="/checkout/success" element={<SuccessCheckout />} />
                                 </Routes>
                             </main>
                             <Footer />

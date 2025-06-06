@@ -24,10 +24,10 @@ export default function MugCard({ id, image, name, price, originalPrice }) {
                 </Link>
                 <div className="flex items-center justify-between">
                     <div>
-                        <span className="text-pink-500 font-bold text-lg">${price.toFixed(2)}</span>
+                        <span className="text-pink-500 font-bold text-lg">{price.toLocaleString()} VND</span>
                         {originalPrice && (
                             <span className="ml-2 text-gray-400 line-through text-sm">
-                                ${originalPrice.toFixed(2)}
+                                {originalPrice.toLocaleString()} VND
                             </span>
                         )}
                     </div>
