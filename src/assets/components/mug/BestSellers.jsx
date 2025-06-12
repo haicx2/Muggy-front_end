@@ -6,6 +6,7 @@ import { Crown, Stars, Sparkles } from 'lucide-react';
 export default function BestSellers() {
     const bestSellerMugs = mugs
         .slice()
+        .filter(mug => mug.available) // Only include available mugs
         .sort((a, b) => (b.sellNumbers || 0) - (a.sellNumbers || 0))
         .slice(0, 3);
 
@@ -45,42 +46,55 @@ export default function BestSellers() {
                     <p className="text-gray-600 text-lg">Discover our most loved mugs ✨</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {bestSellerMugs.map((mug, index) => (
-                        <div key={mug.id} className="relative group">
-                            {/* Best seller badge */}
-                            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                                <div
-                                    className={`px-4 py-2 rounded-full font-medium text-white shadow-lg
-                                    ${index === 0 ? 'bg-yellow-400' : index === 1 ? 'bg-gray-400' : 'bg-amber-600'}
-                                    transform transition-transform group-hover:scale-110`}
-                                >
-                                    <div className="flex items-center space-x-2">
-                                        {React.createElement(badges[index].icon, {
-                                            className: 'w-4 h-4'
-                                        })}
-                                        <span className="text-sm">{badges[index].label}</span>
+                {bestSellerMugs.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {bestSellerMugs.map((mug, index) => (
+                            <div key={mug.id} className="relative group">
+                                {/* Best seller badge */}
+                                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                                    <div
+                                        className={`px-4 py-2 rounded-full font-medium text-white shadow-lg
+                                        ${index === 0 ? 'bg-yellow-400' : index === 1 ? 'bg-gray-400' : 'bg-amber-600'}
+                                        transform transition-transform group-hover:scale-110`}
+                                    >
+                                        <div className="flex items-center space-x-2">
+                                            {React.createElement(badges[index].icon, {
+                                                className: 'w-4 h-4'
+                                            })}
+                                            <span className="text-sm">{badges[index].label}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Animated background */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-pink-50 via-white to-pink-50 rounded-lg transform transition-transform group-hover:scale-105 -z-10"></div>
+                                {/* Animated background */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-pink-50 via-white to-pink-50 rounded-lg transform transition-transform group-hover:scale-105 -z-10"></div>
 
-                            {/* Card wrapper with animation */}
-                            <div className="transform transition-transform hover:-translate-y-2 duration-300">
-                                <MugCard
-                                    id={mug.id}
-                                    name={mug.name}
-                                    price={mug.price}
-                                    originalPrice={mug.originalPrice}
-                                    image={mug.images[0]}
-                                    sellNumbers={mug.sellNumbers}
-                                />
+                                {/* Card wrapper with animation */}
+                                <div className="transform transition-transform hover:-translate-y-2 duration-300">
+                                    <MugCard
+                                        id={mug.id}
+                                        name={mug.name}
+                                        price={mug.price}
+                                        originalPrice={mug.originalPrice}
+                                        image={mug.images[0]}
+                                        rating={mug.rating}
+                                        sellNumbers={mug.sellNumbers}
+                                        available={mug.available}
+                                        stock={mug.stock}
+                                    />
+                                </div>
                             </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-12">
+                        <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-pink-100">
+                            <Crown className="w-8 h-8 text-pink-400" />
                         </div>
-                    ))}
-                </div>
+                        <h3 className="text-xl font-medium text-gray-900 mb-1">No Best Sellers Available</h3>
+                        <p className="text-gray-500">All our popular items are currently out of stock</p>
+                    </div>
+                )}
             </div>
         </section>
     );

@@ -9,10 +9,13 @@ export const mugs = [
     {
         id: 1,
         name: 'Cốc gốm Hello Kitty/Melody',
-        price: 579000,
-        originalPrice: 699000,
-        sellNumbers: 1500,
-        category: 'ceramic',
+        price: 100000,
+        originalPrice: 200000,
+        sellNumbers: 15,
+        rating: 4.9,
+        category: 'cốc đáng yêu',
+        available: true,
+        stock: 25,
         description: 'Cốc gốm sang trọng và bền đẹp với thiết kế cổ điển. Hoàn hảo cho cà phê hoặc trà buổi sáng của bạn.',
         features: [
             'An toàn với máy rửa chén',
@@ -31,9 +34,12 @@ export const mugs = [
     {
         id: 2,
         name: 'Cốc Alien x Croc',
-        price: 699000,
-        sellNumbers: 2000,
-        category: 'porcelain',
+        price: 120000,
+        sellNumbers: 20,
+        rating: 4.8,
+        category: 'cốc dị',
+        available: false,
+        stock: 0,
         description: 'Lấy cảm hứng từ sóng biển, chiếc cốc xinh đẹp này mang lại sự thanh thản cho thói quen hàng ngày của bạn.',
         features: [
             'Thiết kế thủ công',
@@ -52,10 +58,13 @@ export const mugs = [
     {
         id: 3,
         name: 'Cốc Halloween',
-        price: 649000,
-        originalPrice: 799000,
-        sellNumbers: 1200,
-        category: 'glass',
+        price: 150000,
+        originalPrice: 250000,
+        sellNumbers: 12,
+        rating: 5.0,
+        category: 'cốc theo ngày lễ',
+        available: true,
+        stock: 8,
         description: 'Thiết kế hoa anh đào tinh tế mang lại cảm giác mùa xuân cho trải nghiệm đồ uống của bạn.',
         features: [
             'Sứ cao cấp',
@@ -74,12 +83,9 @@ export const mugs = [
 ];
 
 export default function MugList({ searchTerm = '', filters = {} }) {
-    // Use useMemo to only recalculate when inputs change
     const filteredAndSortedMugs = useMemo(() => {
-        // Start with all mugs
         let result = [...mugs];
 
-        // Apply search term filter
         if (searchTerm) {
             result = result.filter(mug =>
                 mug.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -90,9 +96,9 @@ export default function MugList({ searchTerm = '', filters = {} }) {
         // Apply price range filter
         if (filters.priceRange && filters.priceRange !== 'all') {
             result = result.filter(mug => {
-                if (filters.priceRange === 'under500k') return mug.price < 500000;
-                if (filters.priceRange === '500k-1m') return mug.price >= 500000 && mug.price <= 1000000;
-                if (filters.priceRange === 'over1m') return mug.price > 1000000;
+                if (filters.priceRange === 'dưới 200k') return mug.price < 200000;
+                if (filters.priceRange === '200-300k') return mug.price >= 200000 && mug.price <= 300000;
+                if (filters.priceRange === 'trên 300k') return mug.price > 300000;
                 return true;
             });
         }
@@ -127,7 +133,10 @@ export default function MugList({ searchTerm = '', filters = {} }) {
                             price={mug.price}
                             originalPrice={mug.originalPrice}
                             image={mug.images[0]}
+                            rating={mug.rating}
                             sellNumbers={mug.sellNumbers}
+                            available={mug.available}
+                            stock={mug.stock}
                         />
                     ))}
                 </div>

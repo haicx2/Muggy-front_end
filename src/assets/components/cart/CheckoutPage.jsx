@@ -37,7 +37,7 @@ export default function CheckoutPage() {
     const bankDetails = {
         bankName: 'TpBank',
         accountNumber: '19036789065016',
-        accountName: 'NGUYEN VAN A',
+        accountName: 'Muggie',
         branch: 'Hà Nội',
         transferContent: orderId
     };

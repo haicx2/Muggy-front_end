@@ -103,8 +103,8 @@ export default function MugSearch({ onSearch, onFilter }) {
                             >
                                 <option value="all">Tất cả</option>
                                 <option value="under20">dưới 200k</option>
-                                <option value="20-50">200k - 500k</option>
-                                <option value="over50">trên 500k</option>
+                                <option value="20-30">200k - 300k</option>
+                                <option value="over30">trên 300k</option>
                             </select>
                         </div>
                         <div className="space-y-2">
@@ -115,9 +115,9 @@ export default function MugSearch({ onSearch, onFilter }) {
                                 className="w-full p-2 border border-pink-200 rounded-lg focus:border-pink-400 focus:ring-2 focus:ring-pink-200"
                             >
                                 <option value="all">All Categories</option>
-                                <option value="ceramic">Ceramic</option>
-                                <option value="porcelain">Porcelain</option>
-                                <option value="glass">Glass</option>
+                                <option value="cốc dị">Cốc dị</option>
+                                <option value="cốc đáng yêu">Cốc đáng yêu</option>
+                                <option value="cốc theo ngày lễ">Cốc theo ngày lễ</option>
                             </select>
                         </div>
                         <div className="space-y-2">
@@ -127,10 +127,10 @@ export default function MugSearch({ onSearch, onFilter }) {
                                 onChange={(e) => handleFilterChange('sortBy', e.target.value)}
                                 className="w-full p-2 border border-pink-200 rounded-lg focus:border-pink-400 focus:ring-2 focus:ring-pink-200"
                             >
-                                <option value="featured">Featured</option>
-                                <option value="price_asc">Price: Low to High</option>
-                                <option value="price_desc">Price: High to Low</option>
-                                <option value="bestseller">Best Sellers</option>
+                                <option value="featured">Tính năng</option>
+                                <option value="price_asc">Giá: Thấp đến cao</option>
+                                <option value="price_desc">Giá: Cao đến thấp</option>
+                                <option value="bestseller">Bán chạy nhất</option>
                             </select>
                         </div>
                     </div>

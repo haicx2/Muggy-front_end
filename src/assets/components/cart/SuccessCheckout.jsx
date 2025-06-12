@@ -1,10 +1,9 @@
-// SuccessCheckout.jsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { CheckCircle, Package, Truck, Calendar, ArrowRight, Copy, ShoppingBag } from 'lucide-react';
+import { CheckCircle, Package, Truck, Calendar, ArrowRight, Copy, ShoppingBag, Star } from 'lucide-react';
 import useCart from './CartContext.jsx';
 import Notification from '../utils/Notification.jsx';
-import { useState } from 'react';
+import RatingModal from '../utils/Rating.jsx';
 
 export default function SuccessCheckout() {
     const location = useLocation();
@@ -15,6 +14,13 @@ export default function SuccessCheckout() {
         message: '',
         type: 'success'
     });
+
+    const [ratingModal, setRatingModal] = useState({
+        isOpen: false,
+        product: null
+    });
+
+    const [ratedProducts, setRatedProducts] = useState(new Set());
 
     // Get order details from location state or use default values
     const {
@@ -67,6 +73,32 @@ export default function SuccessCheckout() {
             return 'Thanh toán khi nhận hàng (COD)';
         }
         return 'Không xác định';
+    };
+
+    const handleRateProduct = (product) => {
+        setRatingModal({
+            isOpen: true,
+            product
+        });
+    };
+
+    const handleRatingSubmit = async (ratingData) => {
+        try {
+            // Here you would typically send the rating to your backend
+            console.log('Rating submitted:', ratingData);
+
+            // For now, we'll just store it locally and show a success message
+            setRatedProducts(prev => new Set([...prev, ratingData.productId]));
+            showNotification("Cảm ơn bạn đã đánh giá sản phẩm!", "success");
+
+            // Close modal
+            setRatingModal({
+                isOpen: false,
+                product: null
+            });
+        } catch (error) {
+            showNotification("Có lỗi xảy ra khi gửi đánh giá", "error");
+        }
     };
 
     return (
@@ -130,9 +162,12 @@ export default function SuccessCheckout() {
                             </div>
                         </div>
 
-                        {/* Products summary */}
+                        {/* Products summary with rating buttons */}
                         <div className="mt-6 mb-4">
-                            <h3 className="font-medium mb-3">Sản phẩm đã đặt ({items.length})</h3>
+                            <div className="flex items-center justify-between mb-3">
+                                <h3 className="font-medium">Sản phẩm đã đặt ({items.length})</h3>
+                                <p className="text-sm text-gray-500">Hãy đánh giá sản phẩm để giúp người khác!</p>
+                            </div>
                             <div className="space-y-3 max-h-80 overflow-y-auto">
                                 {items.map((item) => (
                                     <div key={item.id} className="flex items-center border-b pb-3">
@@ -143,9 +178,24 @@ export default function SuccessCheckout() {
                                         />
                                         <div className="flex-1">
                                             <h4 className="text-sm font-medium">{item.name}</h4>
-                                            <div className="flex justify-between mt-1">
+                                            <div className="flex justify-between items-center mt-1">
                                                 <span className="text-sm text-gray-500">SL: {item.quantity}</span>
-                                                <span className="text-sm font-medium">{item.price.toLocaleString()} VND</span>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-sm font-medium">{item.price.toLocaleString()} VND</span>
+                                                    {ratedProducts.has(item.id) ? (
+                                                        <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">
+                                                            Đã đánh giá
+                                                        </span>
+                                                    ) : (
+                                                        <button
+                                                            onClick={() => handleRateProduct(item)}
+                                                            className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded-full transition-colors"
+                                                        >
+                                                            <Star className="w-3 h-3" />
+                                                            Đánh giá
+                                                        </button>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -192,6 +242,19 @@ export default function SuccessCheckout() {
                         </div>
                     )}
 
+                    {/* Rating encouragement */}
+                    {items.length > ratedProducts.size && (
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                            <div className="flex items-center">
+                                <Star className="w-5 h-5 text-blue-600 mr-2" />
+                                <p className="text-blue-800 text-sm">
+                                    Bạn có {items.length - ratedProducts.size} sản phẩm chưa được đánh giá.
+                                    Hãy chia sẻ trải nghiệm của bạn để giúp những khách hàng khác!
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Next steps */}
                     <div className="flex flex-col sm:flex-row gap-4 mt-6">
                         <Link
@@ -211,6 +274,14 @@ export default function SuccessCheckout() {
                     </div>
                 </div>
             </div>
+
+            {/* Rating Modal */}
+            <RatingModal
+                product={ratingModal.product}
+                isOpen={ratingModal.isOpen}
+                onClose={() => setRatingModal({ isOpen: false, product: null })}
+                onSubmit={handleRatingSubmit}
+            />
 
             <Notification
                 message={notification.message}

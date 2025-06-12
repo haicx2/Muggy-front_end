@@ -46,11 +46,10 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex space-x-8 items-center">
-                        <Link to="/" className="nav-link text-pink-700 hover:text-pink-500">Home</Link>
-                        <Link to="/mugs" className="nav-link text-pink-700 hover:text-pink-500">Collection</Link>
-                        <Link to="/mugs/bestsellers" className="nav-link text-pink-700 hover:text-pink-500">Best
-                            Sellers</Link>
-                        <Link to="/contact" className="nav-link text-pink-700 hover:text-pink-500">Contact</Link>
+                        <Link to="/" className="nav-link text-pink-700 hover:text-pink-500">Trang chủ</Link>
+                        <Link to="/mugs" className="nav-link text-pink-700 hover:text-pink-500">Bộ sưu tập</Link>
+                        <Link to="/mugs/bestsellers" className="nav-link text-pink-700 hover:text-pink-500">Bán chạy</Link>
+                        <Link to="/contact" className="nav-link text-pink-700 hover:text-pink-500">Về Muggie</Link>
 
                         {user && (
                             <span className="text-pink-700 font-medium">

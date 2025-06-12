@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Minus, Plus, ShoppingCart, Heart, Share2, Truck, Shield, RefreshCw } from 'lucide-react';
+import { Minus, Plus, ShoppingCart, Heart, Share2, Truck, Shield, RefreshCw, Star, Users } from 'lucide-react';
 import useCart from "../cart/CartContext.jsx";
 import { useParams, useNavigate } from 'react-router-dom';
 import { mugs } from './MugList.jsx';
@@ -32,19 +32,49 @@ export default function MugDetails() {
 
     const handleQuantityChange = (delta) => {
         const newQuantity = quantity + delta;
-        if (newQuantity >= 1) {
+        if (newQuantity >= 1 && newQuantity <= mug.stock) {
             setQuantity(newQuantity);
         }
     };
 
     const handleAddToCart = () => {
-        addToCart({
-            id: mug.id,
-            name: mug.name,
-            price: mug.price,
-            image: mug.images[0],
-            quantity // Add this to pass the quantity
-        });
+        if (mug.available && quantity <= mug.stock) {
+            addToCart({
+                id: mug.id,
+                name: mug.name,
+                price: mug.price,
+                image: mug.images[0],
+                quantity
+            });
+        }
+    };
+
+    const renderStars = (rating) => {
+        const stars = [];
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+
+        for (let i = 0; i < 5; i++) {
+            if (i < fullStars) {
+                stars.push(
+                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                );
+            } else if (i === fullStars && hasHalfStar) {
+                stars.push(
+                    <div key={i} className="relative">
+                        <Star className="w-4 h-4 text-gray-300 fill-current" />
+                        <div className="absolute inset-0 overflow-hidden" style={{ width: '50%' }}>
+                            <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        </div>
+                    </div>
+                );
+            } else {
+                stars.push(
+                    <Star key={i} className="w-4 h-4 text-gray-300 fill-current" />
+                );
+            }
+        }
+        return stars;
     };
 
     return (
@@ -78,10 +108,51 @@ export default function MugDetails() {
                 <div className="space-y-6">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">{mug.name}</h1>
+
+                        {/* Rating Section */}
+                        <div className="flex items-center gap-4 mb-4">
+                            <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-1">
+                                    {renderStars(mug.rating)}
+                                </div>
+                                <span className="text-lg font-semibold text-gray-700">
+                                    {mug.rating}
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-1 text-gray-500">
+                                <Users className="w-4 h-4" />
+                                <span className="text-sm">
+                                    {mug.sellNumbers.toLocaleString()} khách hàng đã mua
+                                </span>
+                            </div>
+                        </div>
+
                         <div className="flex items-center gap-4">
                             <span className="text-2xl font-bold text-pink-500">{mug.price.toLocaleString()} VND</span>
                             {mug.originalPrice && (
-                                <span className="text-lg text-gray-500 line-through">{mug.originalPrice.toLocaleString()} VND</span>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-lg text-gray-500 line-through">{mug.originalPrice.toLocaleString()} VND</span>
+                                    <span className="bg-pink-100 text-pink-600 px-2 py-1 rounded-full text-sm font-medium">
+                                        -{Math.round((1 - mug.price / mug.originalPrice) * 100)}%
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Availability Status */}
+                        <div className="flex items-center gap-2">
+                            {mug.available ? (
+                                <>
+                                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                    <span className="text-green-600 font-medium">
+                                        {mug.stock > 10 ? 'Còn hàng' : `Chỉ còn ${mug.stock} sản phẩm`}
+                                    </span>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                                    <span className="text-red-600 font-medium">Hết hàng</span>
+                                </>
                             )}
                         </div>
                     </div>
@@ -103,24 +174,31 @@ export default function MugDetails() {
                         <div className="flex items-center border rounded-lg">
                             <button
                                 onClick={() => handleQuantityChange(-1)}
-                                className="p-3 hover:bg-gray-100"
+                                disabled={!mug.available}
+                                className={`p-3 ${mug.available ? 'hover:bg-gray-100' : 'opacity-50 cursor-not-allowed'}`}
                             >
                                 <Minus className="w-4 h-4" />
                             </button>
                             <span className="w-12 text-center">{quantity}</span>
                             <button
                                 onClick={() => handleQuantityChange(1)}
-                                className="p-3 hover:bg-gray-100"
+                                disabled={!mug.available || quantity >= mug.stock}
+                                className={`p-3 ${mug.available && quantity < mug.stock ? 'hover:bg-gray-100' : 'opacity-50 cursor-not-allowed'}`}
                             >
                                 <Plus className="w-4 h-4" />
                             </button>
                         </div>
                         <button
                             onClick={handleAddToCart}
-                            className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2"
+                            disabled={!mug.available}
+                            className={`flex-1 py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors ${
+                                mug.available
+                                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            }`}
                         >
                             <ShoppingCart className="w-5 h-5" />
-                            Thêm vào giỏ hàng
+                            {mug.available ? 'Thêm vào giỏ hàng' : 'Hết hàng'}
                         </button>
                         <button className="p-3 border rounded-lg hover:bg-gray-100">
                             <Heart className="w-5 h-5" />
@@ -128,6 +206,17 @@ export default function MugDetails() {
                         <button className="p-3 border rounded-lg hover:bg-gray-100">
                             <Share2 className="w-5 h-5" />
                         </button>
+                    </div>
+
+                    {/* Trust Badges */}
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                            <Shield className="w-5 h-5 text-blue-600" />
+                            <span className="font-medium text-blue-800">Cam kết chất lượng</span>
+                        </div>
+                        <p className="text-sm text-blue-700">
+                            Sản phẩm được {mug.sellNumbers.toLocaleString()} khách hàng tin tưởng với đánh giá {mug.rating}/5 sao
+                        </p>
                     </div>
 
                     {/* Product Features */}

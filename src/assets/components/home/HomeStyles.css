@@ -1,57 +1,109 @@
 /* Hero Section Animations */
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+    66% {
+        transform: translateY(-25px) rotate(-1deg);
+    }
 }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Enhanced floating animation for hero image */
 .floating-image {
-    animation: float 6s ease-in-out infinite;
-}
-
-.hero-flower {
-    position: absolute;
-    color: #ec4899;
-    opacity: 0.6;
-}
-
-.flower-spin {
-    animation: spin 12s linear infinite;
-}
-
-/* Collection Card Animations */
-.collection-card {
+    animation: float 8s ease-in-out infinite;
     transition: all 0.3s ease;
+}
+
+.floating-image:hover {
+    animation-play-state: paused;
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Gradient text animation */
+.gradient-text {
+    background: linear-gradient(45deg, #ec4899, #8b5cf6, #ec4899);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Collection Card Animations - Enhanced */
+.collection-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.collection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.collection-card:hover::before {
+    left: 100%;
 }
 
 .collection-card:hover {
-    transform: translateY(-10px) rotate(2deg);
-    box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.1),
-    0 10px 10px -5px rgba(236, 72, 153, 0.04);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow:
+            0 25px 50px -12px rgba(236, 72, 153, 0.15),
+            0 20px 25px -5px rgba(236, 72, 153, 0.1),
+            0 10px 10px -5px rgba(236, 72, 153, 0.04);
 }
 
-.collection-card:hover .card-flower {
-    opacity: 1;
-    transform: rotate(180deg);
-}
-
-.card-flower {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    opacity: 0;
-    transition: all 0.3s ease;
-    transform: rotate(0deg);
-}
-
-/* Contact Form Animations */
+/* Contact Form Animations - Enhanced */
 .input-wrapper {
     position: relative;
     overflow: hidden;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .input-wrapper::after {
@@ -61,29 +113,194 @@
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #ec4899, transparent);
-    transition: all 0.3s ease;
+    background: linear-gradient(90deg, transparent, #ec4899, #8b5cf6, transparent);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
 }
 
 .input-wrapper:focus-within::after {
     left: 0;
 }
 
-.contact-icon {
+.input-wrapper:focus-within input,
+.input-wrapper:focus-within textarea {
+    transform: translateY(-2px);
+}
+
+/* Contact item hover effects */
+.contact-item {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(236, 72, 153, 0.05), transparent);
+    transition: all 0.6s ease;
+}
+
+.contact-item:hover::before {
+    left: 100%;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.1);
+}
+
+/* Button hover effects */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
     transition: all 0.3s ease;
 }
 
-.contact-item:hover .contact-icon {
-    transform: scale(1.2) rotate(15deg);
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.6s ease;
 }
 
-/* Message sent animation */
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+/* Enhanced send message animation */
 @keyframes sendMessage {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.8); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(0.95) rotate(-2deg);
+    }
+    50% {
+        transform: scale(0.9) rotate(0deg);
+    }
+    75% {
+        transform: scale(0.95) rotate(2deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
 }
 
 .send-animation {
-    animation: sendMessage 0.5s ease;
+    animation: sendMessage 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Stats animation */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.stat-item {
+    animation: countUp 0.6s ease forwards;
+}
+
+.stat-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stat-item:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Feature card animations */
+.feature-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.feature-icon {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+    .floating-image {
+        animation-duration: 6s;
+    }
+
+    .collection-card:hover {
+        transform: translateY(-8px) scale(1.01);
+    }
+
+    .contact-item:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Loading states */
+.loading-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Enhanced pulse animation for decorative elements */
+@keyframes enhancedPulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+.enhanced-pulse {
+    animation: enhancedPulse 3s ease-in-out infinite;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+    outline: 2px solid #ec4899;
+    outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.5);
 }
