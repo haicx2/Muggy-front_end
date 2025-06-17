@@ -6,7 +6,7 @@ import useCart from "./CartContext.jsx";
 import Notification from "../utils/Notification.jsx";
 import qr from "../../images/qrcode.png"
 
-const bankQrCode = qr; // Replace with your QR code URL
+const bankQrCode = qr;
 
 // Random order ID generator
 const generateOrderId = () => {
@@ -35,9 +35,9 @@ export default function CheckoutPage() {
 
     // Bank account details
     const bankDetails = {
-        bankName: 'TpBank',
-        accountNumber: '19036789065016',
-        accountName: 'Muggie',
+        bankName: 'Techcombank',
+        accountNumber: '7728032004',
+        accountName: 'TO MINH NGOC ANH',
         branch: 'Hà Nội',
         transferContent: orderId
     };

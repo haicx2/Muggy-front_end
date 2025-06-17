@@ -4,6 +4,19 @@ import { Search } from 'lucide-react';
 import mug1 from "../../images/mug1.png";
 import mug2 from "../../images/mug2.png";
 import mug3 from "../../images/mug3.png";
+import ghostMug from "../../images/ghost1.jpg";
+import ghostMug2 from "../../images/ghost2.jpg";
+import ghostMug3 from "../../images/ghost3.jpg";
+import capybaraMug from "../../images/capy1.jpg";
+import capybaraMug2 from "../../images/capy2.jpg";
+import capybaraMug3 from "../../images/capy3.jpg";
+import flowerMug from "../../images/flower1.jpg";
+import flowerMug2 from "../../images/flower2.jpg";
+import duckMug from "../../images/duck1.jpg";
+import duckMug2 from "../../images/duck2.jpg";
+import duckMug3 from "../../images/duck3.jpg";
+import duckMug4 from "../../images/duck4.jpg";
+import duckMug5 from "../../images/duck5.jpg";
 
 export const mugs = [
     {
@@ -80,6 +93,82 @@ export const mugs = [
             mug3
         ]
     },
+    {
+        id: 4,
+        name: 'Cốc Hình Ma',
+        price: 160000,
+        originalPrice: 220000,
+        sellNumbers: 8,
+        rating: 4.8,
+        category: 'cốc đáng yêu',
+        available: true,
+        stock: 10,
+        description: 'Cốc sứ hình ma dễ thương với thiết kế Halloween độc đáo, phù hợp làm quà tặng mùa lễ hội.',
+        features: [
+            'Sứ dày dặn, giữ nhiệt tốt',
+            'Trang trí hình ma đáng yêu',
+            'Dung tích 350ml',
+            'Tặng kèm túi vải đựng cốc'
+        ],
+        images: [ghostMug, ghostMug2, ghostMug3, ghostMug, ghostMug2]
+    },
+    {
+        id: 5,
+        name: 'Cốc Capybara',
+        price: 130000,
+        originalPrice: 180000,
+        sellNumbers: 15,
+        rating: 4.9,
+        category: 'cốc đáng yêu',
+        available: true,
+        stock: 6,
+        description: 'Cốc sứ in hình Capybara thư giãn, mang lại cảm giác dễ chịu và gần gũi mỗi khi thưởng thức đồ uống.',
+        features: [
+            'Chất liệu sứ trắng cao cấp',
+            'Hình ảnh Capybara ngộ nghĩnh',
+            'Dung tích 300ml',
+            'Có thể dùng trong lò vi sóng'
+        ],
+        images: [capybaraMug, capybaraMug2, capybaraMug3, capybaraMug, capybaraMug2]
+    },
+    {
+        id: 6,
+        name: 'Cốc Hoa Cúc',
+        price: 100000,
+        originalPrice: 150000,
+        sellNumbers: 20,
+        rating: 4.7,
+        category: 'cốc đáng yêu',
+        available: true,
+        stock: 12,
+        description: 'Thiết kế hoa cúc nhẹ nhàng, phù hợp với những bạn yêu thích sự nữ tính và đơn giản.',
+        features: [
+            'Sứ nhẹ, dễ cầm nắm',
+            'Họa tiết hoa cúc tinh tế',
+            'Dung tích 280ml',
+            'Bề mặt tráng men bóng mịn'
+        ],
+        images: [flowerMug, flowerMug2, flowerMug, flowerMug2, flowerMug]
+    },
+    {
+        id: 7,
+        name: 'Cốc Con Vịt',
+        price: 150000,
+        originalPrice: 200000,
+        sellNumbers: 10,
+        rating: 5.0,
+        category: 'cốc đáng yêu',
+        available: true,
+        stock: 9,
+        description: 'Cốc sứ hình con vịt vàng đáng yêu, đem lại niềm vui nhỏ mỗi ngày khi bạn thưởng thức đồ uống yêu thích.',
+        features: [
+            'Thiết kế hình vịt vàng đáng yêu',
+            'Chất liệu sứ dày bền',
+            'Dung tích 320ml',
+            'Dễ dàng vệ sinh, không bám mùi'
+        ],
+        images: [duckMug, duckMug2, duckMug3, duckMug4, duckMug5]
+    }
 ];
 
 export default function MugList({ searchTerm = '', filters = {} }) {
