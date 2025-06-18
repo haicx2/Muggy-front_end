@@ -11,9 +11,9 @@ const mugCollections = [
         id: 'collection1',
         name: 'Bộ Sưu Tập Đôi Hoàn Hảo',
         description: 'Bộ cốc đôi hoàn hảo cho cặp đôi hoặc người yêu thích sự đa dạng.',
-        mugs: [mugs[0], mugs[1]],
-        regularPrice: mugs[0].price + mugs[1].price,
-        discountedPrice: Math.round((mugs[0].price + mugs[1].price) * 0.85),
+        mugs: [mugs[0], mugs[2]],
+        regularPrice: mugs[0].price + mugs[2].price,
+        discountedPrice: Math.round((mugs[0].price + mugs[2].price) * 0.85),
         discountPercentage: 15,
         image: mugs[0].images[0]
     },
@@ -21,21 +21,21 @@ const mugCollections = [
         id: 'collection2',
         name: 'Bộ Sưu Tập Ba Cốc Đặc Biệt',
         description: 'Bộ ba cốc hoàn hảo cho gia đình hoặc để làm quà tặng đặc biệt.',
-        mugs: [mugs[0], mugs[1], mugs[2]],
-        regularPrice: mugs[0].price + mugs[1].price + mugs[2].price,
-        discountedPrice: Math.round((mugs[0].price + mugs[1].price + mugs[2].price) * 0.75),
+        mugs: [mugs[0], mugs[3], mugs[4]],
+        regularPrice: mugs[0].price + mugs[3].price + mugs[4].price,
+        discountedPrice: Math.round((mugs[0].price + mugs[3].price + mugs[4].price) * 0.75),
         discountPercentage: 25,
-        image: mugs[0].images[0]
+        image: mugs[3].images[0]
     },
     {
         id: 'collection3',
         name: 'Bộ Sưu Tập Hai Cốc Đặc Biệt',
         description: 'Bộ đôi cốc hoàn hảo cho gia đình hoặc để làm quà tặng đặc biệt.',
-        mugs: [mugs[0], mugs[2]],
-        regularPrice: mugs[0].price + mugs[2].price,
-        discountedPrice: Math.round((mugs[0].price + mugs[2].price) * 0.85),
+        mugs: [mugs[5], mugs[6]],
+        regularPrice: mugs[5].price + mugs[6].price,
+        discountedPrice: Math.round((mugs[5].price + mugs[6].price) * 0.85),
         discountPercentage: 15,
-        image: mugs[0].images[0]
+        image: mugs[5].images[0]
     }
 ];
 

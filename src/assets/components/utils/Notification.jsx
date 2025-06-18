@@ -4,7 +4,7 @@ import { CheckCircle, XCircle, X } from 'lucide-react';
 export default function Notification({
                                          message,
                                          type = 'success', // 'success' or 'error'
-                                         duration = 3000,
+                                         duration = 10000,
                                          onClose = () => {},
                                          isVisible = false
                                      }) {

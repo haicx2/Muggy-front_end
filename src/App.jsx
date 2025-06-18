@@ -15,6 +15,7 @@ import Login from "./assets/components/user/Login.jsx";
 import Register from "./assets/components/user/Register.jsx";
 import CheckoutPage from "./assets/components/cart/CheckoutPage.jsx";
 import SuccessCheckout from "./assets/components/cart/SuccessCheckout.jsx";
+import PaymentPage from "./assets/components/cart/PaymentPage.jsx";
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                                     <Route path="/register" element={<Register />} />
                                     <Route path="/checkout" element={<CheckoutPage />} />
                                     <Route path="/checkout/success" element={<SuccessCheckout />} />
+                                    <Route path="/payment" element={<PaymentPage />} />
                                 </Routes>
                             </main>
                             <Footer />
