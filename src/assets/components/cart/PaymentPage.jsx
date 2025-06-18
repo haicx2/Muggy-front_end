@@ -16,12 +16,18 @@ function crc16(data) {
     return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
 }
 
-// Move bankDetails outside component to prevent recreation on each render
 const bankDetails = {
-    bin: '970407', // Techcombank
+    bin: '970407', // Techcombank BIN
     accountNumber: '7728032004',
     accountName: 'TO MINH NGOC ANH',
 };
+
+const createTLV = (tag, value) => {
+    const valueStr = String(value);
+    const length = valueStr.length.toString().padStart(2, '0');
+    return `${tag}${length}${valueStr}`;
+};
+
 
 export default function PaymentPage() {
     const navigate = useNavigate();
@@ -45,25 +51,41 @@ export default function PaymentPage() {
             showNotification(initialNotification.message, initialNotification.type);
         }
 
-        const amountStr = order.total.toString();
-        const memo = order.orderId;
+        const bankBinTLV = createTLV('00', bankDetails.bin);
+        const accountNumberTLV = createTLV('01', bankDetails.accountNumber);
+        const consumerInfo = `${bankBinTLV}${accountNumberTLV}`;
+
+        const vietQRGuidTLV = createTLV('00', 'A000000727'); // VietQR GUID
+        const consumerInfoTLV = createTLV('01', consumerInfo);
+        const merchantAccountInfoValue = `${vietQRGuidTLV}${consumerInfoTLV}`;
+        const merchantAccountInfo = createTLV('38', merchantAccountInfoValue);
+        const purposeOfTransaction = createTLV('08', order.orderId);
+        const additionalDataValue = `${purposeOfTransaction}`; // You can add more fields here like 01 (Bill Number), etc.
+        const additionalData = createTLV('62', additionalDataValue);
 
         const payloadFormat = '000201';
-        const pointOfInitiation = '010212';
-        const guid = 'A000000727';
-        const bankInfo = `00${bankDetails.bin.length.toString().padStart(2, '0')}${bankDetails.bin}01${bankDetails.accountNumber.length.toString().padStart(2, '0')}${bankDetails.accountNumber}`;
-        const merchantAccountInfo = `38${(guid.length + 4 + bankInfo.length).toString().padStart(2, '0')}00${guid.length.toString().padStart(2, '0')}${guid}01${bankInfo.length.toString().padStart(2, '0')}${bankInfo}`;
-        const transactionCurrency = '5303704';
-        const transactionAmount = `54${amountStr.length.toString().padStart(2, '0')}${amountStr}`;
+        const pointOfInitiation = '010212'; // 11 for one-time use, 12 for multiple uses
+        const transactionCurrency = '5303704'; // VND
+        const transactionAmount = createTLV('54', order.total.toString());
         const countryCode = '5802VN';
-        const purposeOfTransaction = `08${memo.length.toString().padStart(2, '0')}${memo}`;
-        const additionalData = `62${(purposeOfTransaction.length).toString().padStart(2, '0')}${purposeOfTransaction}`;
-        const payload = `${payloadFormat}${pointOfInitiation}${merchantAccountInfo}${transactionCurrency}${transactionAmount}${countryCode}${additionalData}6304`;
-        const crc = crc16(payload);
+        const crcTag = '6304'; // CRC Tag and length
 
-        setQrValue(`${payload}${crc}`);
+        const payloadWithoutCrc = [
+            payloadFormat,
+            pointOfInitiation,
+            merchantAccountInfo,
+            transactionCurrency,
+            transactionAmount,
+            countryCode,
+            additionalData,
+            crcTag
+        ].join('');
 
-    }, [order, navigate, clearCart, initialNotification]); // Removed bankDetails references
+        const crc = crc16(payloadWithoutCrc);
+        setQrValue(`${payloadWithoutCrc}${crc}`);
+
+
+    }, [order, navigate, clearCart, initialNotification]);
 
     const showNotification = (message, type) => {
         setNotification({ visible: true, message, type });
