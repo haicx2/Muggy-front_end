@@ -49,7 +49,7 @@ export default function Navbar() {
                         <Link to="/" className="nav-link text-pink-700 hover:text-pink-500">Trang chủ</Link>
                         <Link to="/mugs" className="nav-link text-pink-700 hover:text-pink-500">Bộ sưu tập</Link>
                         <Link to="/mugs/bestsellers" className="nav-link text-pink-700 hover:text-pink-500">Bán chạy</Link>
-                        <Link to="/contact" className="nav-link text-pink-700 hover:text-pink-500">Về Muggie</Link>
+                        <Link to="/about-us" className="nav-link text-pink-700 hover:text-pink-500">Về Muggie</Link>
 
                         {user && (
                             <span className="text-pink-700 font-medium">

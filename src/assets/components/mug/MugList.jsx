@@ -17,10 +17,13 @@ import duckMug2 from "../../images/duck2.jpg";
 import duckMug3 from "../../images/duck3.jpg";
 import duckMug4 from "../../images/duck4.jpg";
 import duckMug5 from "../../images/duck5.jpg";
+import cup1 from "../../images/cup1.jpg";
+import cup2 from "../../images/cup2.jpg";
+import cup3 from "../../images/cup3.jpg";
 
 export const mugs = [
     {
-        id: 1,
+        id: 1, // Corrected ID
         name: 'Cốc gốm Hello Kitty/Melody',
         price: 100000,
         originalPrice: 200000,
@@ -168,6 +171,37 @@ export const mugs = [
             'Dễ dàng vệ sinh, không bám mùi'
         ],
         images: [duckMug, duckMug2, duckMug3, duckMug4, duckMug5]
+    },
+    {
+        id: 8, // Corrected ID
+        name: 'Cốc "Cup" thiết kế bởi Muggie',
+        price: 200000, // Base price for size S
+        originalPrice: null,
+        sellNumbers: 25,
+        rating: 5.0,
+        category: 'cốc thiết kế',
+        available: true,
+        stock: 50,
+        description: 'Một chiếc cốc độc đáo được thiết kế bởi Muggie, có sẵn hai màu sắc và hai kích cỡ. Hoàn hảo để thể hiện cá tính của bạn.',
+        features: [
+            'Thiết kế độc quyền bởi Muggie',
+            'Chất liệu gốm cao cấp',
+            'An toàn với máy rửa chén và lò vi sóng',
+            'Nhiều tùy chọn màu sắc và kích cỡ'
+        ],
+        images: [cup1, cup2, cup3, cup1, cup2],
+        designer: 'Muggie',
+        designerNote: 'Lấy cảm hứng từ sự đơn giản và niềm vui, "Cup" là sự kết hợp giữa hình dáng cổ điển và màu sắc hiện đại. Mỗi đường cong đều được chăm chút để mang lại cảm giác thoải mái nhất khi cầm trên tay. - Muggie',
+        variants: {
+            colors: [
+                { name: 'Hồng', value: '#FBCFE8', image: cup1, allImages: [cup1, cup1, cup3, cup1, cup3] },
+                { name: 'Xanh', value: '#BFDBFE', image: cup2, allImages: [cup2, cup2, cup3, cup2, cup3] }
+            ],
+            sizes: [
+                { name: 'S', price: 200000 },
+                { name: 'L', price: 300000 }
+            ]
+        }
     }
 ];
 
@@ -226,6 +260,7 @@ export default function MugList({ searchTerm = '', filters = {} }) {
                             sellNumbers={mug.sellNumbers}
                             available={mug.available}
                             stock={mug.stock}
+                            designer={mug.designer} // Pass designer prop
                         />
                     ))}
                 </div>

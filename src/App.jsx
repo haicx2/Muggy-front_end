@@ -16,6 +16,8 @@ import Register from "./assets/components/user/Register.jsx";
 import CheckoutPage from "./assets/components/cart/CheckoutPage.jsx";
 import SuccessCheckout from "./assets/components/cart/SuccessCheckout.jsx";
 import PaymentPage from "./assets/components/cart/PaymentPage.jsx";
+import { Analytics } from "@vercel/analytics/react";
+import AboutUs from "./assets/components/home/AboutUs.jsx";
 
 function App() {
     return (
@@ -38,11 +40,13 @@ function App() {
                                     <Route path="/checkout" element={<CheckoutPage />} />
                                     <Route path="/checkout/success" element={<SuccessCheckout />} />
                                     <Route path="/payment" element={<PaymentPage />} />
+                                    <Route path="/about-us" element={<AboutUs />} />
                                 </Routes>
                             </main>
                             <Footer />
                         </div>
                         <FloatingChatBot />
+                        <Analytics/>
                     </div>
                 </BrowserRouter>
             </CartProvider>

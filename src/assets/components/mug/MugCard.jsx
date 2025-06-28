@@ -2,7 +2,7 @@ import { ShoppingCart, Star } from 'lucide-react';
 import useCart from "../cart/CartContext.jsx";
 import { Link } from 'react-router-dom';
 
-export default function MugCard({ id, image, name, price, originalPrice, rating, sellNumbers, available, stock }) {
+export default function MugCard({ id, image, name, price, originalPrice, rating, sellNumbers, available, stock, designer }) {
     const { addToCart } = useCart();
 
     const renderStars = (rating) => {
@@ -37,8 +37,8 @@ export default function MugCard({ id, image, name, price, originalPrice, rating,
         <div className={`group relative bg-white rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 ${
             !available ? 'opacity-75' : ''
         }`}>
-            {/* Availability Badge */}
-            <div className="absolute top-2 left-2 z-10">
+            {/* Badges */}
+            <div className="absolute top-2 left-2 z-10 flex flex-col gap-2">
                 {!available ? (
                     <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
                         Hết hàng
@@ -49,6 +49,16 @@ export default function MugCard({ id, image, name, price, originalPrice, rating,
                     </span>
                 ) : null}
             </div>
+
+            {/* Designer Badge */}
+            {designer && (
+                <div className="absolute top-2 right-2 z-10">
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-bold">
+                        Thiết kế độc quyền
+                    </span>
+                </div>
+            )}
+
 
             <Link to={`/mug/${id}`}>
                 <div className="aspect-square overflow-hidden rounded-t-lg">
