@@ -167,7 +167,7 @@ export const mugs = [
     },
     {
         id: 6,
-        name: 'Cốc Hoa Cúc',
+        name: 'Cốc Hoa Tulipa',
         price: 100000,
         originalPrice: 150000,
         sellNumbers: 20,
