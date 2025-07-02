@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, {useMemo} from 'react';
 import MugCard from "./MugCard.jsx";
-import { Search } from 'lucide-react';
+import {Search} from 'lucide-react';
 import mug1 from "../../images/mug1.png";
 import mug2 from "../../images/mug2.png";
 import mug3 from "../../images/mug3.png";
@@ -23,7 +23,38 @@ import cup3 from "../../images/cup3.jpg";
 
 export const mugs = [
     {
-        id: 1, // Corrected ID
+        id: 8, // Corrected ID
+        name: 'Cốc "Cup" thiết kế bởi Muggie',
+        price: 200000, // Base price for size S
+        originalPrice: null,
+        sellNumbers: 25,
+        rating: 5.0,
+        category: 'cốc thiết kế',
+        available: true,
+        stock: 50,
+        description: 'Một chiếc cốc độc đáo được thiết kế bởi Muggie, có sẵn hai màu sắc và hai kích cỡ. Hoàn hảo để thể hiện cá tính của bạn.',
+        features: [
+            'Thiết kế độc quyền bởi Muggie',
+            'Chất liệu gốm cao cấp',
+            'An toàn với máy rửa chén và lò vi sóng',
+            'Nhiều tùy chọn màu sắc và kích cỡ'
+        ],
+        images: [cup1, cup2, cup3, cup1, cup2],
+        designer: 'Muggie',
+        designerNote: 'Lấy cảm hứng từ sự đơn giản và niềm vui, "Cup" là sự kết hợp giữa hình dáng cổ điển và màu sắc hiện đại. Mỗi đường cong đều được chăm chút để mang lại cảm giác thoải mái nhất khi cầm trên tay. - Muggie',
+        variants: {
+            colors: [
+                {name: 'Hồng', value: '#FBCFE8', image: cup1, allImages: [cup1, cup1, cup3, cup1, cup3]},
+                {name: 'Xanh', value: '#BFDBFE', image: cup2, allImages: [cup2, cup2, cup3, cup2, cup3]}
+            ],
+            sizes: [
+                {name: 'S', price: 200000},
+                {name: 'L', price: 300000}
+            ]
+        }
+    },
+    {
+        id: 1,
         name: 'Cốc gốm Hello Kitty/Melody',
         price: 100000,
         originalPrice: 200000,
@@ -172,40 +203,9 @@ export const mugs = [
         ],
         images: [duckMug, duckMug2, duckMug3, duckMug4, duckMug5]
     },
-    {
-        id: 8, // Corrected ID
-        name: 'Cốc "Cup" thiết kế bởi Muggie',
-        price: 200000, // Base price for size S
-        originalPrice: null,
-        sellNumbers: 25,
-        rating: 5.0,
-        category: 'cốc thiết kế',
-        available: true,
-        stock: 50,
-        description: 'Một chiếc cốc độc đáo được thiết kế bởi Muggie, có sẵn hai màu sắc và hai kích cỡ. Hoàn hảo để thể hiện cá tính của bạn.',
-        features: [
-            'Thiết kế độc quyền bởi Muggie',
-            'Chất liệu gốm cao cấp',
-            'An toàn với máy rửa chén và lò vi sóng',
-            'Nhiều tùy chọn màu sắc và kích cỡ'
-        ],
-        images: [cup1, cup2, cup3, cup1, cup2],
-        designer: 'Muggie',
-        designerNote: 'Lấy cảm hứng từ sự đơn giản và niềm vui, "Cup" là sự kết hợp giữa hình dáng cổ điển và màu sắc hiện đại. Mỗi đường cong đều được chăm chút để mang lại cảm giác thoải mái nhất khi cầm trên tay. - Muggie',
-        variants: {
-            colors: [
-                { name: 'Hồng', value: '#FBCFE8', image: cup1, allImages: [cup1, cup1, cup3, cup1, cup3] },
-                { name: 'Xanh', value: '#BFDBFE', image: cup2, allImages: [cup2, cup2, cup3, cup2, cup3] }
-            ],
-            sizes: [
-                { name: 'S', price: 200000 },
-                { name: 'L', price: 300000 }
-            ]
-        }
-    }
 ];
 
-export default function MugList({ searchTerm = '', filters = {} }) {
+export default function MugList({searchTerm = '', filters = {}}) {
     const filteredAndSortedMugs = useMemo(() => {
         let result = [...mugs];
 
@@ -267,7 +267,7 @@ export default function MugList({ searchTerm = '', filters = {} }) {
             ) : (
                 <div className="text-center py-12 bg-white/80 backdrop-blur-sm rounded-lg">
                     <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-pink-100">
-                        <Search className="w-8 h-8 text-pink-400" />
+                        <Search className="w-8 h-8 text-pink-400"/>
                     </div>
                     <h3 className="text-xl font-medium text-gray-900 mb-1">Không tìm thấy sản phẩm</h3>
                     <p className="text-gray-500">Hãy thử điều chỉnh tìm kiếm hoặc bộ lọc</p>

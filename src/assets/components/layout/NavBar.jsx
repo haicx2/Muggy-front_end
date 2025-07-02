@@ -153,9 +153,10 @@ export default function Navbar() {
                         <Link to="/mugs/bestsellers"
                               className="block px-3 py-2 text-pink-700 hover:text-pink-500 hover:bg-pink-100 rounded-lg transition-colors">Best
                             Sellers</Link>
-                        <Link to="/contact"
+                        <Link to="/about-us"
                               className="block px-3 py-2 text-pink-700 hover:text-pink-500 hover:bg-pink-100 rounded-lg transition-colors">Contact</Link>
-
+                        <Link to="/cart"
+                              className="block px-3 py-2 text-pink-700 hover:text-pink-500 hover:bg-pink-100 rounded-lg transition-colors">Cart</Link>/
                         {user ? (
                             <>
                                 <div className="block px-3 py-2 text-pink-700 font-medium">Welcome, {user.name}!</div>

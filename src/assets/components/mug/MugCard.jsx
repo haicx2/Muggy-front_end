@@ -84,7 +84,7 @@ export default function MugCard({ id, image, name, price, originalPrice, rating,
                         {renderStars(rating)}
                     </div>
                     <span className="text-sm text-gray-500">
-                        {rating} ({sellNumbers.toLocaleString()} đã bán)
+                        {rating} ({sellNumbers.toLocaleString()} đánh giá)
                     </span>
                 </div>
 

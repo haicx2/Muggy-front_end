@@ -168,7 +168,7 @@ export default function MugDetails() {
                             </div>
                             <div className="flex items-center gap-1 text-gray-500">
                                 <Users className="w-4 h-4" />
-                                <span className="text-sm">{mug.sellNumbers.toLocaleString()} khách hàng đã mua</span>
+                                <span className="text-sm">{mug.sellNumbers.toLocaleString()} khách hàng đã thêm vào giỏ</span>
                             </div>
                         </div>
 
@@ -260,11 +260,11 @@ export default function MugDetails() {
                         </div>
                         <div className="flex flex-col items-center gap-2">
                             <Shield className="w-6 h-6 text-blue-600" />
-                            <span className="text-sm text-gray-600">Bảo hành 2 năm</span>
+                            <span className="text-sm text-gray-600">Bảo hành 1 tháng</span>
                         </div>
                         <div className="flex flex-col items-center gap-2">
                             <RefreshCw className="w-6 h-6 text-blue-600" />
-                            <span className="text-sm text-gray-600">Đổi trả trong 30 ngày</span>
+                            <span className="text-sm text-gray-600">Đổi trả trong 3 ngày</span>
                         </div>
                     </div>
                 </div>
